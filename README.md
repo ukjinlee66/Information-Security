@@ -28,4 +28,6 @@
 ### 3. Trace the attacker<br>
   - logging, ip trace, computer forensics<br><br>
   
-## 수강학기 : 2020-2학기<br>
+## 수강학기 : 2020-2학기<br><br>
+
+## For explanation of each lecture, please refer to the PDF file.<br>
