@@ -5,15 +5,7 @@ void construct_key_schedule(char K[], char keys[17][48]){
 
    // step 2.1. convert 64-bit K into 56-bit KPlus with 8x7 matrix PC_1
    char KPlus[56];
-   char p = 0x80;
    permute_8_7(PC_1, K, KPlus);
-   for(int i=0;i<56;i++){
-		if (KPlus[i] & p)
-			printf("1");
-		else
-			printf("0");
-		p = p >> 1;
-   }
 
    // step 2.2. split KPlus into 28-bit C0 and 28-bit D0
    char C[17][28], D[17][28];
@@ -30,6 +22,11 @@ void split_KPlus(char KPlus[], char C0[], char D0[]){
 // split kplus into c0 and d0
    // ......code........
 
+	int i = 0;
+   for(i=0;i<28;i++)
+	   C0[i] = KPlus[i];
+   for(int j=0;j<28;j++)
+	   D0[j] = KPlus[i++];
    printf("after split KPlust\n");
    show_CD(C0, D0);
 }
@@ -52,6 +49,35 @@ void comp_Cn_Dn(char C[17][28], char D[17][28], int ROL[]){
 void comp_Ci_Di(char C[17][28], char D[17][28], int i, int ROL[]){
 // compute C[i], D[i] from C[i-1], D[i-1] using ROL[i]
    // ........... code ...........
+   // start index 1
+	if (ROL[i] == 1) // shift 1
+	{
+		int Ctemp = C[i-1][0];
+		int Dtemp = D[i-1][0];
+		for(int j=1;j<28;j++)
+		{
+			C[i][j-1] = C[i-1][j];
+			D[i][j-1] = D[i-1][j];
+		}
+		C[i][27] = Ctemp;
+		D[i][27] = Dtemp;
+	}
+	else //shift 2
+	{
+		int Ctemp1 = C[i-1][0];
+		int Ctemp2 = C[i-1][1];
+		int Dtemp1 = D[i-1][0];
+		int Dtemp2 = D[i-1][1];
+		for(int j=2;j<28;j++)
+		{
+			C[i][j-2] = C[i-1][j];
+			D[i][j-2] = D[i-1][j];
+		}
+		C[i][26] = Ctemp1;
+		C[i][27] = Ctemp2;
+		D[i][26] = Dtemp1;
+		D[i][27] = Dtemp2;
+	}
 }
 void comp_keys(char C[17][28], char D[17][28], int PC_2[8][6], char keys[17][48]){
    char CD[56];

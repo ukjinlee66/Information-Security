@@ -22,12 +22,16 @@ void des_encrypt(char M[], char keys[17][48], char cipher[]){
    char LR[64]; 
    combineLR(L[16], R[16], LR);
    permute_8_8(IP_1, LR, cipher);
-
 }
 
 void split_into_L0R0(char MPlus[], char L[], char R[], int len){
-   int i;
    // ........ code .............
+   // 32, 32 bit divide
+   int i = 0;
+   for (i = 0;i < 32; i++)
+	   L[i] = MPlus[i];
+   for (int j = 0;j < 32; j++)
+	   R[j] = MPlus[i++];
    printf("after split into L0R0.\n");
    show_LR(L, R);
 }
@@ -61,13 +65,23 @@ void comp_Li_Ri(char L[17][32], char R[17][32], int i, int len, char *key){
 }
 void reverse(char L[], char R[]){
    // ........... code ..............
+   // reverse 32bit L_array, R_array
+   char copy_temp[32];
+
+   copy_arr(copy_temp, L, 32);
+   copy_arr(L, R, 32);
+   copy_arr(R, copy_temp, 32);
    printf("after reverse. L and R is\n");
    show_LR(L, R);
 }
 void combineLR(char L[], char R[], char LR[]){
 // combine L and R into LR
    // ............code ..............
-
+   int index;
+   for(index = 0; index < 32; index++)
+	   LR[index] = L[index];
+   for(int j = 0; j < 32; j++)
+	   LR[index++] = R[j];
    printf("after combineLR\n");
    show_arr(LR, 64);
 }

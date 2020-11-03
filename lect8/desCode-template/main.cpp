@@ -9,10 +9,7 @@ void display_sentence(char *cipher){
 int main(){
    char keys[17][48];
    char cipher[64]; // cipher text
-   char *K;
-   K = 0x133457799BBCDFF1;
-   printf("K : %s\n",K);
    construct_key_schedule(K, keys); // K is original 64bit key
-   //des_encrypt(M, keys, cipher);
-   //display_sentence(cipher);
+   des_encrypt(M, keys, cipher);
+   display_sentence(cipher);
 }

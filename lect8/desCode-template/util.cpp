@@ -13,7 +13,7 @@ void permute_8_8(int perm[8][8], char src[], char dest[]){
          cnt++;
       }
    }
-   printf("after permute. dest (size:%d) is\n",cnt);
+   printf("after permute_8_8. dest (size:%d) is\n",cnt);
    for(int i=0;i<cnt;i++)
          printf("%d ",dest[i]);
    printf("\n");
@@ -32,7 +32,7 @@ void permute_8_6(int perm[8][6], char src[], char dest[]){
          cnt++;
       }
    }
-   printf("after permute. dest (size:%d) is\n",cnt);
+   printf("after permute_8_6. dest (size:%d) is\n",cnt);
    for(int i=0;i<cnt;i++)
          printf("%d ",dest[i]);
    printf("\n");
@@ -51,7 +51,7 @@ void permute_8_4(int perm[8][4], char src[], char dest[]){
          cnt++;
       }
    }
-   printf("after permute. dest (size:%d) is\n",cnt);
+   printf("after permute_8_4. dest (size:%d) is\n",cnt);
    for(int i=0;i<cnt;i++)
          printf("%d ",dest[i]);
    printf("\n");
@@ -70,7 +70,7 @@ void permute_8_7(int perm[8][7], char src[], char dest[]){
          cnt++;
       }
    }
-   printf("after permute. dest (size:%d) is\n",cnt);
+   printf("after permute_8_7. dest (size:%d) is\n",cnt);
    for(int i=0;i<cnt;i++)
          printf("%d ",dest[i]);
    printf("\n");

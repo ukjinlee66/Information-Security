@@ -52,5 +52,3 @@ extern void copy_arr(char *x, char *y, int len);
 extern void xoring(char *x, char *y, char *z, int len);
 extern char xorbit(char x, char y);
 extern void show_arr(char *x, int len);
-
-
